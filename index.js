@@ -1,7 +1,7 @@
-
+const API_URL = "https://crudcrud.com/api/dec8721cfa0341cea535ee0bd9cbc4d2";
 window.onload = ()=>{
     
-    axios.get('https://crudcrud.com/api/9ba5d618f93e4155a4ebc699f8036906/appointmentDetails')
+    axios.get(API_URL+"/appointmentDetails")
     .then(res=>{
         console.log(res);
         for(const e of res.data){
@@ -24,7 +24,7 @@ function saveToLocalStorage(event) {
         ContactNumber: contactNumber
     }
 
-    axios.post('https://crudcrud.com/api/9ba5d618f93e4155a4ebc699f8036906/appointmentDetails', obj)
+    axios.post(API_URL+"/appointmentDetails", obj)
     .then(res=> {
         showOnUserScreen(obj);
         // console.log(res);
@@ -51,7 +51,8 @@ function showOnUserScreen(obj) {
         removeList(childElement);
         // localStorage.removeItem(obj.Email); // Remove from localStorage
             const id = obj._id;
-            axios.delete(`https://crudcrud.com/api/9ba5d618f93e4155a4ebc699f8036906/appointmentDetails/${id}`)
+
+            axios.delete(API_URL+`/appointmentDetails/${id}`)
             .then(res=>{
                 console.log(res);
                 
@@ -68,9 +69,31 @@ function showOnUserScreen(obj) {
     editBtn.textContent = 'Edit';
     childElement.appendChild(editBtn);
 
-    editBtn.addEventListener('click', function () {
-        editItem(childElement);
-        localStorage.removeItem(obj.Email);
+    editBtn.addEventListener('click', function (event) {
+    console.log(childElement);    
+    const temp = childElement.textContent?.split("-").map((f)=>f.trim());
+    const userName = document.getElementById("userName");
+    const email  = document.getElementById("email");
+    const tel = document.getElementById("phoneNumber");
+    userName.value= temp[0];
+    email.value = temp[1];
+    tel.value = temp[2];
+    // console.log(event.srcElement.parentELement);
+    //     editItem(childElement);
+    //     // localStorage.removeItem(obj.Email);
+    //     const id = obj._id;
+       
+       
+    //     axios.put(`https://crudcrud.com/api/9ba5d618f93e4155a4ebc699f8036906/appointmentDetails/${id}`, {
+        
+    //             Name: 'pradeep',
+    //             Email: 'email',
+    //             ContactNumber: '45612'
+            
+    //     })
+    //     .then(res=>{
+    //         console.log(res);
+    //     }).catch(err=>console.log(err));
     });
 
 
