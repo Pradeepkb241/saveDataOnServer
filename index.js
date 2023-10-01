@@ -8,10 +8,9 @@ window.onload = ()=>{
         showOnUserScreen(e);
         }
     }).catch(err=>console.log(err));
-    // localStorage.setItem(obj.Email, JSON.stringify(obj));
-    // showOnUserScreen(obj);
-
+   
 }
+
 function saveToLocalStorage(event) {
     event.preventDefault();
 
@@ -31,6 +30,8 @@ function saveToLocalStorage(event) {
         // console.log(res);
     })
     .catch(err=>console.log(err));
+     // localStorage.setItem(obj.Email, JSON.stringify(obj));
+    // showOnUserScreen(obj);
 
     event.target.reset();
 
@@ -48,7 +49,18 @@ function showOnUserScreen(obj) {
 
     deleteBtn.addEventListener('click', function () {
         removeList(childElement);
-        localStorage.removeItem(obj.Email); // Remove from localStorage
+        // localStorage.removeItem(obj.Email); // Remove from localStorage
+            const id = obj._id;
+            axios.delete(`https://crudcrud.com/api/9ba5d618f93e4155a4ebc699f8036906/appointmentDetails/${id}`)
+            .then(res=>{
+                console.log(res);
+                
+                // for(const e of res.data){
+                // showOnUserScreen(e);
+                // }
+            }).catch(err=>console.log(err));
+           
+        
     });
 
 
