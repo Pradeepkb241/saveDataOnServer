@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>save to saveToLocalStorage</title>
+</head>
+<body>
+    <form onsubmit  ="saveToLocalStorage(event)">
+        <label >Name</label>
+        <input type="text" name="userName" required>
+        <label >Email</label>
+        <input type="email" name="email" required>
+        <label >Contact Number</label>
+        <input type="tel" name="phoneNumber" required>
+        <button>Submit</button>
+    </form>
+    <ul id="listOfItem"></ul>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.1/axios.min.js"></script>
+    <script src="index.js"></script>
+</body>
+</html>
